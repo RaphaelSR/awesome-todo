@@ -21,22 +21,43 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
+      
       bordered
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
+        <q-item-label header class="text-grey-8"
         >
           Navigation
         </q-item-label>
-        <Navigation
+        <q-item 
+        to="/"
+        exact
+        clickable>
+        <q-item-section avatar>
+          <q-icon name="list"/>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>Todo</q-item-label>          
+        </q-item-section>
+        </q-item>
+
+        <q-item 
+        to="/Settings"
+        exact
+        clickable>
+        <q-item-section avatar>
+          <q-icon name="settings"/>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>Settings</q-item-label>          
+        </q-item-section>
+        </q-item>
+        <!-- <Navigation
           v-for="link in Navigation"
           :key="link.title"
           v-bind="link"
-        />
+        />  -->
       </q-list>
     </q-drawer>
 
@@ -63,7 +84,7 @@ export default {
         {
           title: 'Todo',
           icon: 'list',
-          link: '/'
+          to: '/'
         },
                 {
           title: 'Settings',
