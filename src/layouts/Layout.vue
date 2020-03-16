@@ -1,58 +1,47 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title class="absolute-center">
+          Awesome Todo
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
-      
+      :breakpoint="767"
+      :width="250"
       bordered
-      content-class="bg-grey-1"
+      content-class="bg-primary"
     >
-      <q-list>
-        <q-item-label header class="text-grey-8"
-        >
+      <q-list dark>
+        <q-item-label header class="text-grey-4">
           Navigation
         </q-item-label>
-        <q-item 
-        to="/"
-        exact
-        clickable>
-        <q-item-section avatar>
-          <q-icon name="list"/>
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Todo</q-item-label>          
-        </q-item-section>
+        <q-item
+          v-for="nav in navs"
+          v-bind:key="nav.label"
+          :to="nav.to"
+          class="text-grey-4"
+          exact
+          clickable
+        >
+          <q-item-section avatar>
+            <q-icon :name="nav.icon" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ nav.label }}</q-item-label>
+          </q-item-section>
         </q-item>
-
-        <q-item 
-        to="/Settings"
-        exact
-        clickable>
-        <q-item-section avatar>
-          <q-icon name="settings"/>
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Settings</q-item-label>          
-        </q-item-section>
-        </q-item>
+        <!-- <q-item to="/Settings" exact clickable>
+          <q-item-section avatar>
+            <q-icon name="settings" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Settings</q-item-label>
+          </q-item-section>
+        </q-item> -->
         <!-- <Navigation
           v-for="link in Navigation"
           :key="link.title"
@@ -68,32 +57,46 @@
 </template>
 
 <script>
-import Navigation from 'components/EssentialLink'
+// import Navigation from "components/EssentialLink";
 
 export default {
-  name: 'MainLayout',
+  name: "MainLayout",
 
-  components: {
-    Navigation
-  },
+  // components: {
+  //   Navigation
+  // },
 
-  data () {
+  data() {
     return {
-      leftDrawerOpen: false,
-      Navigation: [
+      leftDrawerOpen: true,
+      navs: [
         {
-          title: 'Todo',
-          icon: 'list',
-          to: '/'
+          label: "Todo",
+          icon: "list",
+          to: "/"
         },
-                {
-          title: 'Settings',
-          icon: 'settings',
-          link: '/settings',
-          target: '_blank'
-        },
+        {
+          label: "Settings",
+          icon: "settings",
+          to: "/Settings"
+        }
       ]
-    }
+    };
+  }
+};
+</script>
+
+<style lang="scss">
+@media screen and (min-width: 768px) {
+  .q-footer {
+    display: none;
   }
 }
-</script>
+
+.q-drawer{
+.q-router-link--exact-active{
+  color: white !important;
+}
+}
+
+</style>
