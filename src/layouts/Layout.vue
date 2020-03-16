@@ -8,6 +8,18 @@
       </q-toolbar>
     </q-header>
 
+    <q-footer elevated>
+      <q-tabs>
+        <q-route-tab
+          v-for="nav in navs"
+          v-bind:key="nav.label"
+          :to="nav.to"
+          :icon="nav.icon"
+          :label="nav.label"
+        />
+      </q-tabs>
+    </q-footer>
+
     <q-drawer
       v-model="leftDrawerOpen"
       :breakpoint="767"
