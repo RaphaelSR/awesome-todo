@@ -98,6 +98,7 @@ export default {
 };
 </script>
 
+
 <style lang="scss">
 @media screen and (min-width: 768px) {
   .q-footer {
